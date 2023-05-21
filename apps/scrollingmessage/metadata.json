@@ -15,6 +15,7 @@
     {"name":"scollingmessage.app.js","url":"app.js"},
     {"name":"scollingmessage.lib.js","url":"lib.js"},
     {"name":"scollingmessage.boot.js","url":"boot.js"},
-    {"name":"scollingmessage.img","url":"app-icon.js","evaluate":true}
+    {"name":"scollingmessage.img","url":"app-icon.js",
+    "evaluate":true}
   ]
 }

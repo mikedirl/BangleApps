@@ -129,6 +129,11 @@ var xxl = {
     },
 
     draw: function() {
+        g.clear();
+        g.setFont("Vector",40);
+        d.drawString(xxl.txtBody, 0,0);
+    },
+    drawOld: function() {
         var wh = 24; // widgets height
         var gw = g.getWidth();
         var h = (g.getHeight() - wh)/2; // height of drawing area per stripe

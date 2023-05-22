@@ -128,10 +128,47 @@ var xxl = {
         }
     },
 
+    getNextBreakPos: function(st) {
+        let testStr = "";
+        let breakPos = -1;
+        
+        for(let i=0; i< st.length; i++) {
+          testStr += st[i];
+          console.log("testStr", testStr);
+          if(g.stringWidth(testStr)>=180) {
+            return i-1;
+          }
+        }
+        return breakPos;
+    },    
+
     draw: function() {
+        let str = xxl.txtBody;
+        Bangle.setLCDPower(1); // light on
+        Bangle.setLocked(false); // keep the touch input active
+        g.setBgColor('#000000');        
         g.clear();
-        g.setFont("Vector",40);
-        g.drawString(xxl.txtBody, 0,0);
+        let ypos = 0;
+        g.setFont("Vector:25");
+
+        let renderStr = str;
+        
+        while(renderStr.length>0) {
+          let drawStr = "";
+          let breakPos = xxl.getNextBreakPos(renderStr);
+          console.log('breakPos', breakPos);
+          if(breakPos == -1) {
+            drawStr = renderStr;
+            renderStr = "";
+          } else {
+            drawStr = renderStr.substring(0,breakPos);
+            renderStr = renderStr.slice(breakPos);
+          }
+          g.drawString(drawStr, 0,ypos);
+          ypos+=30;
+        }        
+        // loop drawing
+        xxl.queueDraw();
     },
     drawOld: function() {
         var wh = 24; // widgets height

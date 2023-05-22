@@ -131,7 +131,7 @@ var xxl = {
     draw: function() {
         g.clear();
         g.setFont("Vector",40);
-        d.drawString(xxl.txtBody, 0,0);
+        g.drawString(xxl.txtBody, 0,0);
     },
     drawOld: function() {
         var wh = 24; // widgets height

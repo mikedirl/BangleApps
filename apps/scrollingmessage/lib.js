@@ -72,7 +72,7 @@ var xxl = {
         g.setFont(xxl.buffnt);
         xxl.wtot = g.stringMetrics(xxl.txt).width;
         xxl.xpos = xxl.bufw; // g.getWidth();
-        msgs.push(this.getTextMessage());
+        xxl.msgs.push(this.getTextMessage());
         //xxl.renderStr = this.getTextMessage();
 
         xxl.draw();

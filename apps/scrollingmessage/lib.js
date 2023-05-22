@@ -9,6 +9,7 @@ var xxl = {
     txt:'',
     txtBody:'',
     renderStr: '',
+    numPages: 0,
     txtFrom:'',
     wtot:0,
     img:undefined,
@@ -157,10 +158,11 @@ var xxl = {
         g.clear();
         let ypos = 0;
         g.setFont("Vector:25");
-
         if(xxl.renderStr=="") {
+            xxl.numPages = 0;
             xxl.renderStr = xxl.getTextMessage();
         }
+        xxl.numPages++;
         
         while(xxl.renderStr.length>0) {
           let drawStr = "";
@@ -180,9 +182,11 @@ var xxl = {
           ypos+=30;
         }
 
-        if(xxl.renderStr!="") {
+        if(xxl.numPages==1&&xxl.renderStr=="") {
+            //do nothing if only one page
+        } else {
             xxl.queueDraw();
-        }        
+        }
     },
     drawOld: function() {
         var wh = 24; // widgets height

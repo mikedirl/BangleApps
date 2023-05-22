@@ -61,7 +61,12 @@ var xxl = {
 
         // prepare string and metrics
         xxl.txt = (xxl.msg.title||(xxl.msg.src||"MSG")) + ": " + (xxl.msg.body||"-x-");
-        xxl.txtFrom = xxl.msg.title||xxl.msg.src;
+        xxl.txtFrom = xxl.msg.title;
+
+        if(!xxl.txtFrom) {
+            xxl.txtFrom = xxl.msg.src;
+        }
+
         xxl.txtBody = xxl.msg.body;
         g.setFont(xxl.buffnt);
         xxl.wtot = g.stringMetrics(xxl.txt).width;

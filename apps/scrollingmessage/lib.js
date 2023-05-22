@@ -80,7 +80,7 @@ var xxl = {
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
-        },10000-(Date.now()%1000));
+        },3000-(Date.now()%3000));
     },
 
 
@@ -178,9 +178,11 @@ var xxl = {
             break;
           }
           ypos+=30;
+        }
+
+        if(xxl.renderStr!="") {
+            xxl.queueDraw();
         }        
-        // loop drawing
-        xxl.queueDraw();
     },
     drawOld: function() {
         var wh = 24; // widgets height

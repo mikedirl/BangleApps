@@ -80,7 +80,7 @@ var xxl = {
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
-        },3000-(Date.now()%3000));
+        },3000);
     },
 
 

@@ -123,6 +123,8 @@ var xxl = {
         return xxl.txtFrom + ' - ' + xxl.txtBody;
     },
     draw: function() {
+        try {
+            
         g.reset();
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
@@ -158,6 +160,10 @@ var xxl = {
         }
 
         xxl.queueDraw();
+    } catch (error) {
+        g.drawString(error, 0,10);
+    }
+
     },
     drawOld: function() {
         var wh = 24; // widgets height

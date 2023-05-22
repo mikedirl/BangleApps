@@ -157,11 +157,7 @@ var xxl = {
           ypos+=30;
         }
 
-        if(xxl.numPages==1&&xxl.renderStr=="") {
-            //do nothing if only one page
-        } else {
-            xxl.queueDraw();
-        }
+        xxl.queueDraw();
     },
     drawOld: function() {
         var wh = 24; // widgets height

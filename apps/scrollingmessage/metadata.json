@@ -12,10 +12,10 @@
   "readme": "README.md",
   "screenshots": [{"url":"screenshot.png"}],
   "storage": [
-    {"name":"scollingmessage.app.js","url":"app.js"},
-    {"name":"scollingmessage.lib.js","url":"lib.js"},
-    {"name":"scollingmessage.boot.js","url":"boot.js"},
-    {"name":"scollingmessage.img","url":"app-icon.js",
+    {"name":"scrollingmessage.app.js","url":"app.js"},
+    {"name":"scrollingmessage.lib.js","url":"lib.js"},
+    {"name":"scrollingmessage.boot.js","url":"boot.js"},
+    {"name":"scrollingmessage.img","url":"app-icon.js",
     "evaluate":true}
   ]
 }

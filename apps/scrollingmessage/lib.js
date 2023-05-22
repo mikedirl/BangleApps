@@ -71,11 +71,13 @@ var xxl = {
 //private:
     // schedule a draw for 60 FPS
     queueDraw: function() {
+        if (xxl.drawTimeout) clearTimeout(xxl.drawTimeout);
+
         if (xxl.drawTimeout) { return; } // clearTimeout(xxl.drawTimeout); }
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
-        }, 16 - (Date.now() % 16));
+        },60000-(Date.now()%60000));
     },
 
 
@@ -146,7 +148,7 @@ var xxl = {
         let str = xxl.txtBody;
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
-        g.setBgColor('#000000');        
+        g.setBgColor('#FFFFFF');        
         g.clear();
         let ypos = 0;
         g.setFont("Vector:25");

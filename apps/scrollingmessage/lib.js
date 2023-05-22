@@ -14,7 +14,8 @@ var xxl = {
     wtot:0,
     img:undefined,
     imgcol:'#ffffff',
-
+    msgs:[],
+    activeMessage:0,
     // gfx buffer
     bufimg:undefined,
     bufpal4color:undefined,
@@ -71,8 +72,8 @@ var xxl = {
         g.setFont(xxl.buffnt);
         xxl.wtot = g.stringMetrics(xxl.txt).width;
         xxl.xpos = xxl.bufw; // g.getWidth();
-
-        xxl.renderStr = this.getTextMessage();
+        msgs.push(this.getTextMessage());
+        //xxl.renderStr = this.getTextMessage();
 
         xxl.draw();
     },
@@ -97,46 +98,12 @@ var xxl = {
         g.reset();
         g.setBgColor('#ffff00');
         g.clear();
-
+        xxl.msgs = [];
+        xxl.activeMessage = 0;
         // Bangle.setLCDPower(0); // light off
         // Bangle.setLocked(true); // disable touch
 
         setTimeout(function(){Bangle.showClock();}, 100);
-    },
-
-    // this is even slower than the scaled printing :(
-    // megaPrintBufferd: function(txt, x, y){
-    //     xxl.bufimg.setFont(xxl.buffnt);
-    //     xxl.bufimg.setFontAlign(-1, -1);
-    //     xxl.bufimg.setColor(1); // index in palette
-    //     xxl.bufimg.clear();
-    //     xxl.bufimg.drawString(txt, x, 0);
-    //     for(var i = 0; i<xxl.buflin; ++i){
-    //         g.drawImage({
-    //                      width:xxl.bufw, height:xxl.bufh, bpp:2
-    //                      , buffer: xxl.bufimg.buffer
-    //                      , palette: xxl.bufpal4color
-    //                     }
-    //                     , -i*g.getWidth(), y
-    //                     ,{scale:xxl.bufscale}
-    //                 );
-    //         y+=xxl.bufscale*xxl.bufh;
-    //     }
-    // },
-
-    // x: pixels in buffer. Must scale this.
-    // y: screen position
-    megaPrint: function(txt, x, y){
-        g.setFont(xxl.buffnt+':'+xxl.bufscale);
-        g.setColor('#ffffff');
-        g.setFontAlign(-1, -1);
-        for(var i = 0; i<xxl.buflin; ++i){
-            g.drawString(txt
-                         , x*xxl.bufscale-i*g.getWidth()
-                         , y
-                    );
-            y+=xxl.bufscale*xxl.bufh;
-        }
     },
 
     getNextBreakPos: function(st) {
@@ -165,7 +132,10 @@ var xxl = {
         g.setFont("Vector:25");
         if(xxl.renderStr=="") {
             xxl.numPages = 0;
-            xxl.renderStr = xxl.getTextMessage();
+            if(xxl.activeMessage<xxl.msgs.length-1) {
+                xxl.activeMessage++;
+            }
+            xxl.renderStr = xxl.msgs[xxl.activeMessage];
         }
         xxl.numPages++;
         

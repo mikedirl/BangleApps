@@ -8,6 +8,7 @@ var xxl = {
     loopCount : 0,
     txt:'',
     txtBody:'',
+    renderStr: '',
     txtFrom:'',
     wtot:0,
     img:undefined,
@@ -65,11 +66,13 @@ var xxl = {
         xxl.wtot = g.stringMetrics(xxl.txt).width;
         xxl.xpos = xxl.bufw; // g.getWidth();
 
+        xxl.renderStr = this.getTextMessage();
+
         xxl.draw();
     },
 
 //private:
-    // schedule a draw for 60 FPS
+
     queueDraw: function() {
         if (xxl.drawTimeout) clearTimeout(xxl.drawTimeout);
 
@@ -77,7 +80,7 @@ var xxl = {
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
-        },60000-(Date.now()%60000));
+        },10000-(Date.now()%1000));
     },
 
 
@@ -143,9 +146,11 @@ var xxl = {
         }
         return breakPos;
     },    
-
+    getTextMessage: function() {
+        return xxl.txtFrom + ' - ' + xxl.txtBody;
+    },
     draw: function() {
-        let str = xxl.txtBody;
+        g.reset();
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
@@ -153,20 +158,25 @@ var xxl = {
         let ypos = 0;
         g.setFont("Vector:25");
 
-        let renderStr = str;
+        if(xxl.renderStr=="") {
+            xxl.renderStr = xxl.getTextMessage();
+        }
         
-        while(renderStr.length>0) {
+        while(xxl.renderStr.length>0) {
           let drawStr = "";
-          let breakPos = xxl.getNextBreakPos(renderStr);
+          let breakPos = xxl.getNextBreakPos(xxl.renderStr);
           console.log('breakPos', breakPos);
           if(breakPos == -1) {
-            drawStr = renderStr;
-            renderStr = "";
+            drawStr = xxl.renderStr;
+            xxl.renderStr = "";
           } else {
-            drawStr = renderStr.substring(0,breakPos);
-            renderStr = renderStr.slice(breakPos);
+            drawStr = xxl.renderStr.substring(0,breakPos);
+            xxl.renderStr = xxl.renderStr.slice(breakPos);
           }
           g.drawString(drawStr, 0,ypos);
+          if(ypos>=150) {
+            break;
+          }
           ypos+=30;
         }        
         // loop drawing

@@ -156,7 +156,7 @@ var xxl = {
           if(ypos>=145) {
             break;
           }
-          ypos+=18;
+          ypos+=19;
         }
 
         xxl.queueDraw();

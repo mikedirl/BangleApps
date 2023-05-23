@@ -130,7 +130,7 @@ var xxl = {
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
         g.clear();
-        let ypos = 15;
+        let ypos = 20;
         g.setFont("Vector:25");
         if(xxl.renderStr=="") {
             xxl.numPages = 0;
@@ -156,7 +156,7 @@ var xxl = {
           if(ypos>=150) {
             break;
           }
-          ypos+=25;
+          ypos+=20;
         }
 
         xxl.queueDraw();

@@ -87,7 +87,7 @@ var xxl = {
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
-        },3000);
+        },5000);
     },
 
 

@@ -1,7 +1,7 @@
 {
   "id": "scrollingmessage",
   "name": "Scrolling Message",
-  "version": "0.01",
+  "version": "0.02",
   "shortName": "Scolling Message",
   "description": "App to display notifications from iOS and Gadgetbridge/Android with auto scroll",
   "icon": "app.png",

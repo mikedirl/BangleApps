@@ -153,10 +153,10 @@ var xxl = {
             xxl.renderStr = xxl.renderStr.slice(breakPos);
           }
           g.drawString(drawStr, 0,ypos);
-          if(ypos>=150) {
+          if(ypos>=145) {
             break;
           }
-          ypos+=16;
+          ypos+=18;
         }
 
         xxl.queueDraw();

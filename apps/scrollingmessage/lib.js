@@ -72,11 +72,18 @@ var xxl = {
     getNextBreakPos: function(st) {
         let testStr = "";
         let breakPos = -1;
+        let spacePos = -1;
         
         for(let i=0; i< st.length; i++) {
           testStr += st[i];
+          if(st[i]==" ") {
+            spacePos = i;
+          }
           console.log("testStr", testStr);
           if(g.stringWidth(testStr)>=180) {
+            if(spacePos != -1) {
+                return spacePos-1;
+            }
             return i-1;
           }
         }
@@ -115,11 +122,11 @@ var xxl = {
             drawStr = xxl.renderStr.substring(0,breakPos);
             xxl.renderStr = xxl.renderStr.slice(breakPos);
           }
-          g.drawString(drawStr, 0,ypos);
+          g.drawString(drawStr.trim(), 0,ypos);
           if(ypos>=145) {
             break;
           }
-          ypos+=21;
+          ypos+=23;
         }
 
         xxl.queueDraw();

@@ -82,7 +82,7 @@ var xxl = {
           console.log("testStr", testStr);
           if(g.stringWidth(testStr)>=180) {
             if(spacePos != -1) {
-                return spacePos-1;
+                return spacePos;
             }
             return i-1;
           }
@@ -95,7 +95,7 @@ var xxl = {
     draw: function() {
         try {
             
-        g.reset();
+        //g.reset();
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
@@ -126,7 +126,7 @@ var xxl = {
           if(ypos>=145) {
             break;
           }
-          ypos+=23;
+          ypos+=22;
         }
 
         xxl.queueDraw();

@@ -11,54 +11,20 @@ var xxl = {
     renderStr: '',
     numPages: 0,
     txtFrom:'',
-    wtot:0,
-    img:undefined,
-    imgcol:'#ffffff',
     msgs:[],
     activeMessage:0,
-    // gfx buffer
-    bufimg:undefined,
-    bufpal4color:undefined,
-    buffnt:'6x15', // font to use. Built-in: 4x6, 6x8,12x20,6x15,Vector
-    bufw:0, // width of buffer for all lines
-    bufh:0, // height of buffer
-    buflin:0, // number of lines to print
-    bufscale:0, // scale factor for buffer to screen
 
 // public:
     show: function(theMessage){
-        // console.log("theMessage is:");
-        // console.log(theMessage);
         xxl.msg = theMessage;
-
-        // get icon
-        try{
-            xxl.img = require("messageicons").getImage(xxl.msg);
-            xxl.imgcol = (require("messageicons").getColor(xxl.msg, '#ffffff')||'#00ffff');
-        }catch(e){}
-
-        Bangle.loadWidgets();
 
         Bangle.on('touch', function (b, xy) {
             xxl.stop();
         });
+
         setWatch(xxl.stop, BTN1);
+
         Bangle.buzz(500,1);
-
-
-        // offscreen gfx buffer
-        // screen is 176x176
-        // font should be scaled 5x9=30x72px
-        // built in fonts are 4x6, 6x8,12x20,6x15,Vector
-        xxl.bufpal4color = new Uint16Array([0x0000,0xFFFF,0x7BEF,0xAFE5],0,2);   // b,w,grey,greenyellow
-        g.setFont(xxl.buffnt);
-        var hfont = g.getFontHeight();
-        xxl.bufscale=parseInt((g.getHeight() - 24/*widgets*/)/2) / hfont;
-        xxl.buflin=2; // number of lines
-        xxl.bufw=(g.getWidth() * xxl.buflin) / xxl.bufscale; // 6x15 font scaled by 5 on 176 screen width
-        xxl.bufh=hfont;
-
-        xxl.bufimg = Graphics.createArrayBuffer(xxl.bufw,xxl.bufh,2,{msb:true});
 
         // prepare string and metrics
         xxl.txt = (xxl.msg.title||(xxl.msg.src||"MSG")) + ": " + (xxl.msg.body||"-x-");
@@ -69,9 +35,6 @@ var xxl = {
         }
 
         xxl.txtBody = xxl.msg.body;
-        g.setFont(xxl.buffnt);
-        xxl.wtot = g.stringMetrics(xxl.txt).width;
-        xxl.xpos = xxl.bufw; // g.getWidth();
         xxl.msgs.push(this.getTextMessage());
         //xxl.renderStr = this.getTextMessage();
 
@@ -156,59 +119,13 @@ var xxl = {
           if(ypos>=145) {
             break;
           }
-          ypos+=19;
+          ypos+=21;
         }
 
         xxl.queueDraw();
     } catch (error) {
         g.drawString(error, 0,10);
     }
-
-    },
-    drawOld: function() {
-        var wh = 24; // widgets height
-        var gw = g.getWidth();
-        var h = (g.getHeight() - wh)/2; // height of drawing area per stripe
-
-        Bangle.setLCDPower(1); // light on
-        Bangle.setLocked(false); // keep the touch input active
-        g.setBgColor('#000000');
-        g.clear();
-
-        // center line
-        g.setColor(xxl.imgcol);
-        g.fillRect(      0,wh+h-3,gw/2-26,wh+h-1);
-        g.fillRect(gw/2+26,wh+h-3,   gw-1,wh+h-1);
-
-        // image
-        /*
-        if (xxl.img) { // 24x24
-            g.setColor(xxl.imgcol);
-            g.drawImage(xxl.img
-                        , gw/2, wh+h-2 // center point
-                        ,{rotate:0,scale:2}
-                       );
-        }
-        */
-        // scroll message
-        xxl.megaPrint(xxl.txtBody, xxl.xpos, wh);
-                                            
-        g.reset();
-        // widget redraw
-        Bangle.drawWidgets();
-
-        // scroll
-        xxl.xpos -= 3; // buffer pixels
-        if (xxl.xpos < -xxl.wtot - xxl.bufw/xxl.buflin - 4) {
-            ++xxl.loopCount;
-            if (xxl.loopCount > 2) {
-                xxl.stop();
-                return;
-            }
-            xxl.xpos = (3*xxl.bufw)/2;
-        }
-        // loop drawing
-        xxl.queueDraw();
     }
 };
 

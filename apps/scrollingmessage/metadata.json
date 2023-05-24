@@ -1,7 +1,7 @@
 {
   "id": "scrollingmessage",
   "name": "Scrolling Message",
-  "version": "0.02",
+  "version": "0.03",
   "shortName": "Scolling Message",
   "description": "App to display notifications from iOS and Gadgetbridge/Android with auto scroll",
   "icon": "app.png",
@@ -12,7 +12,6 @@
   "readme": "README.md",
   "screenshots": [{"url":"screenshot.png"}],
   "storage": [
-    {"name":"scrollingmessage.app.js","url":"app.js"},
     {"name":"scrollingmessage.lib.js","url":"lib.js"},
     {"name":"scrollingmessage.boot.js","url":"boot.js"},
     {"name":"scrollingmessage.img","url":"app-icon.js",

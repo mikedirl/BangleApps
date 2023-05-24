@@ -12,6 +12,7 @@
   "readme": "README.md",
   "screenshots": [{"url":"screenshot.png"}],
   "storage": [
+    {"name":"scrollingmessage.app.js","url":"app.js"},
     {"name":"scrollingmessage.lib.js","url":"lib.js"},
     {"name":"scrollingmessage.boot.js","url":"boot.js"},
     {"name":"scrollingmessage.img","url":"app-icon.js",

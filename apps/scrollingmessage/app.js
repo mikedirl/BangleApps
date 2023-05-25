@@ -1,8 +1,10 @@
 ﻿function stop() {
+/*
     g.setBgColor(0, 1, 1);
     g.clear();
     g.reset();
     load();
+*/
 }
 var txt = 'No Messages';
 try{

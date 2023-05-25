@@ -101,7 +101,7 @@ var xxl = {
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
-        //g.clear();
+        g.clear();
         let ypos = 20;
         g.setFont("Vector:25");
         if(xxl.renderStr=="") {

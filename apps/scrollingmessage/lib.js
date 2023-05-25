@@ -48,7 +48,7 @@ var xxl = {
 
         if (xxl.drawTimeout) { return; } // clearTimeout(xxl.drawTimeout); }
             xxl.drawTimeout = setTimeout(function () {
-            xxl.drawTimeout = undefined;
+            //xxl.drawTimeout = undefined;
             xxl.draw();
         },5000);
     },
@@ -63,6 +63,8 @@ var xxl = {
         g.clear();
         xxl.msgs = [];
         xxl.activeMessage = 0;
+
+        Bangle.buzz(500,1);
         // Bangle.setLCDPower(0); // light off
         // Bangle.setLocked(true); // disable touch
 
@@ -95,11 +97,11 @@ var xxl = {
     draw: function() {
         try {
             
-        //g.reset();
+        g.reset();
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
-        g.clear();
+        //g.clear();
         let ypos = 20;
         g.setFont("Vector:25");
         if(xxl.renderStr=="") {

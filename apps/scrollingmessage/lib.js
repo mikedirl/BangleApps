@@ -48,9 +48,9 @@ var xxl = {
 
         if (xxl.drawTimeout) { return; } // clearTimeout(xxl.drawTimeout); }
             xxl.drawTimeout = setTimeout(function () {
-            //xxl.drawTimeout = undefined;
+            xxl.drawTimeout = undefined;
             xxl.draw();
-        },5000);
+        },3000);
     },
 
 

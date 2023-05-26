@@ -59,7 +59,7 @@ var xxl = {
         if (xxl.drawTimeout) { clearTimeout(xxl.drawTimeout); }
         xxl.drawTimeout = undefined;
         g.reset();
-        g.setBgColor('#ffff00');
+        g.setBgColor('#ffffff');
         g.clear();
         xxl.msgs = [];
         xxl.activeMessage = 0;
@@ -101,7 +101,7 @@ var xxl = {
         Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
-        g.clear();
+        g.clear(1);
         let ypos = 20;
         g.setFont("Vector:25");
         if(xxl.renderStr=="") {

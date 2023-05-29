@@ -46,7 +46,7 @@ var xxl = {
     queueDraw: function() {
         if (xxl.drawTimeout) clearTimeout(xxl.drawTimeout);
 
-        if (xxl.drawTimeout) { return; } // clearTimeout(xxl.drawTimeout); }
+        //if (xxl.drawTimeout) { return; } // clearTimeout(xxl.drawTimeout); }
             xxl.drawTimeout = setTimeout(function () {
             xxl.drawTimeout = undefined;
             xxl.draw();
@@ -64,7 +64,7 @@ var xxl = {
         xxl.msgs = [];
         xxl.activeMessage = 0;
 
-        Bangle.buzz(500,1);
+        //Bangle.buzz(500,1);
         // Bangle.setLCDPower(0); // light off
         // Bangle.setLocked(true); // disable touch
 

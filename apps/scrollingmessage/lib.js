@@ -24,7 +24,7 @@ var xxl = {
 
         setWatch(xxl.stop, BTN1);
 
-        Bangle.buzz(500,1);
+        Bangle.buzz(100,0);
 
         // prepare string and metrics
         xxl.txt = (xxl.msg.title||(xxl.msg.src||"MSG")) + ": " + (xxl.msg.body||"-x-");
@@ -98,7 +98,7 @@ var xxl = {
         try {
             
         g.reset();
-        Bangle.setLCDPower(1); // light on
+        //Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
         g.clear(1);

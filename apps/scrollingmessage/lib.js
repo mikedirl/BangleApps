@@ -125,10 +125,11 @@ var xxl = {
             xxl.renderStr = xxl.renderStr.slice(breakPos);
           }
           g.drawString(drawStr.trim(), 0,ypos);
+           ypos+=22;
           if(ypos>=145) {
             break;
           }
-          ypos+=22;
+          
         }
 
         xxl.queueDraw();

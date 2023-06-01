@@ -17,7 +17,7 @@ var xxl = {
 // public:
     show: function(theMessage){
         xxl.msg = theMessage;
-
+if(xxl.msg.body) {
         Bangle.on('touch', function (b, xy) {
             xxl.stop();
         });
@@ -39,6 +39,7 @@ var xxl = {
         //xxl.renderStr = this.getTextMessage();
 
         xxl.draw();
+}
     },
 
 //private:
@@ -99,7 +100,7 @@ var xxl = {
             
         g.reset();
         Bangle.setLCDPower(1); // light on
-        Bangle.setLocked(false); // keep the touch input active
+        Bangle.setLocked(true); // keep the touch input active
         g.setBgColor('#FFFFFF');        
         g.clear(1);
         let ypos = 20;

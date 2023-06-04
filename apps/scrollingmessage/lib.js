@@ -100,7 +100,7 @@ if(xxl.msg.body) {
             
         g.reset();
         Bangle.setLCDPower(1); // light on
-        Bangle.setLocked(true); // keep the touch input active
+        Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
         g.clear(1);
         let ypos = 20;
@@ -114,7 +114,7 @@ if(xxl.msg.body) {
         }
         xxl.numPages++;
         
-        while(xxl.renderStr.length>0) {
+        while(xxl.renderStr.trim().length>0) {
           let drawStr = "";
           let breakPos = xxl.getNextBreakPos(xxl.renderStr);
           console.log('breakPos', breakPos);

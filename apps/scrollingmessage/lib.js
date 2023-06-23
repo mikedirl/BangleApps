@@ -99,7 +99,7 @@ if(xxl.msg.body) {
         try {
             
         g.reset();
-        Bangle.setLCDPower(0); // light on
+        Bangle.setLCDPower(1); // light on
         Bangle.setLocked(false); // keep the touch input active
         g.setBgColor('#FFFFFF');        
         g.clear(1);
